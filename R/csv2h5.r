@@ -320,7 +320,7 @@ dir2h5 = function(csvdir, h5out, dataset=NULL, combined=TRUE, format="column", c
   if (!is.null(dataset))
     check.is.string(dataset)
   check.is.flag(combined)
-  format = match.arg(tolower(format), c("column", "compound")) # TODO compound
+  format = match.arg(tolower(format), c("column", "compound")) 
   check.is.natnum(compression)
   if (compression > 9 || compression < 0)
     stop("argument 'compression' must be an integer in the range 0 to 9")

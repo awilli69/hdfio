@@ -121,10 +121,16 @@ h5_colnames = function(h5_fp, dataset)
     cn = colnames(h5_fp[[glue(dataset, "table")]][1])
     cn[-grep("^index$", cn, perl=TRUE)] # don't include the index since we drop it in the reader
   }
-  else if (format == "pytables_fixed")
+  else if (format == "pytables_fixed") {
     h5_fp[[glue(dataset, "axis0")]][]
-  else
+  }
+  else if (format == "hdfio_compound") {
+    h5attr(h5_fp[[dataset]], "VARNAMES")
+  }
+  else {
     stop("unknown format")
+    
+  }
 }
 
 
